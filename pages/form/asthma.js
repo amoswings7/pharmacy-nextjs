@@ -1,5 +1,5 @@
 import Decider from "../../components/form/Decider"
-import Header from "../../components/form/header"
+import Header from "../../components/form/Header"
 import Question from '../../components/form/Question'
 import List from '../../components/form/List'
 import styles from '../../styles/form.module.css'
@@ -7,7 +7,7 @@ import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
 import { useState } from "react"
-import SubmitBtn from "../../components/form/submitBtn"
+import SubmitBtn from "../../components/form/SubmitBtn"
 
 
 function Asthma() {

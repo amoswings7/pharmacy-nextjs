@@ -1,5 +1,5 @@
 import Decider from "../../components/form/Decider"
-import Header from "../../components/form/header"
+import Header from "../../components/form/Header"
 import Question from '../../components/form/Question'
 import List from '../../components/form/List'
 import styles from '../../styles/form.module.css'
