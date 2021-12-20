@@ -24,7 +24,7 @@ function CategorySection({data}) {
                     <Link key={Math.floor(Math.random()*256830912)} href={'/treatments/'+obj.id.toString()}>
                         <a>
                             <div className={styles.category}>
-                                <Image id={styles.image} width={250} height={200} src={"/treatments/"+obj.imageURL} alt="weight-loss"/>
+                                <Image id={styles.image} width={250} height={200} src={"/treatments/"+obj.imageURL} alt='treatment'/>
                                 <p>{obj.name}</p>
                             </div>
                         </a>

@@ -14,11 +14,17 @@ export async function getStaticPaths(){
 import styles from '../../styles/treatment.module.css'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { ContextApi } from '../../components/context';
+import { useContext, useState } from 'react';
 
-function treatment({data}) {
+function Treatment({data}) {
     // console.log(data)
 
+    const {carts, setCarts, consultation, cartStorageName} = useContext(ContextApi);
+    const [volume, setVolume] = useState(2)
+
     const route = useRouter();
+    
     function formPage(){
       const names = data.name.split(' ');
       if(names.length>1){
@@ -33,6 +39,26 @@ function treatment({data}) {
       }
       route.push('/form/'+names[0].toLowerCase())
       // console.log(names[0].toLowerCase())
+    }
+
+    function quantityHandler(amount){
+      setVolume(()=>amount)
+    }
+    function cartHandler(item){
+      const obj = {
+        imageURL:item.imageURL,
+        productName:item.productName,
+        price:item.price,
+        quantity:volume
+      }
+      
+      if(!carts){
+        setCarts(()=>[obj])
+        console.log('first one baby')
+      }else{
+        setCarts(()=>[...carts,obj])
+        console.log('just added another')
+      }
     }
     return (
       <div id={styles.mainContent}>
@@ -53,39 +79,57 @@ function treatment({data}) {
                   </p>
               </div>
               <div id={styles.productSection}>
-                  <div className={styles.product}>
-                      <Image width={150} height={150} src={'/products/'+data.items[0].imageURL}/>
-                      <div className={styles.infor}>
-                          <div className="name">
-                              <p id={styles.nameOfTreatment}>
-                                {data.items[0].treatmentName}
-                              </p>
-                              <p id={styles.nameOfProduct}>
-                                {data.items[0].productName}
-                              </p>
-                          </div>
-                          <div id={styles.quantityContainer}>
-                              <span>Quantity :</span> <select id={styles.quantity}>
-                                <option value="2">2</option>
-                                <option value="2">4</option>
-                                <option value="2">8</option>
-                              </select>
-                          </div>
-                          <div id={styles.price}>
-                            <p>From R{data.items[0].price}</p>
-                          </div>
-                          <div id={styles.addToCart}>
-                            <button>Add to cart</button>
+                  {data.items.map((item,index) => (
+                      <div key={Math.floor(Math.random()*1000000*35672)} className={styles.product}>
+                          <Image alt={item.productName} width={150} height={150} src={'/products/'+item.imageURL}/>
+                          <div className={styles.infor}>
+                              <div className="name">
+                                  <p id={styles.nameOfTreatment}>
+                                    {item.treatmentName}
+                                  </p>
+                                  <p id={styles.nameOfProduct}>
+                                    {item.productName}
+                                  </p>
+                              </div>
+                              <div id={styles.quantityContainer}>
+                                  <span>Quantity :</span> <select onChange={(e)=>{
+                                    const value = e.target.value;
+                                    quantityHandler(value)
+                                  }} id={styles.quantity}>
+                                    <option value="2">2</option>
+                                    <option value="4">4</option>
+                                    <option value="8">8</option>
+                                  </select>
+                              </div>
+                              <div id={styles.price}>
+                                <p>From R{item.price}</p>
+                              </div>
+                              {(carts !==null && (carts.find(ele => ele.productName===item.productName && ele.imageURL===item.imageURL)) === undefined) && (
+                                  <div id={styles.addToCart}>
+                                    <button onClick={()=>cartHandler(item)}>Add to cart</button>
+                                  </div>
+                              )}
+                              {carts ===null && (
+                                  <div id={styles.addToCart}>
+                                    <button onClick={()=>cartHandler(item)}>Add to cart</button>
+                                  </div>
+                              )}
+
+                              {carts !==null && (carts.find(ele => ele.productName===item.productName && ele.imageURL===item.imageURL)) !== undefined && (
+                                  <div id={styles.addToCart}>
+                                    <button style={{background:'green'}}>already added</button>
+                                  </div>
+                              )}
                           </div>
                       </div>
-                  </div>
+                  ))}
               </div>
           </main>
       </div>
     )
 }
 
-export default treatment
+export default Treatment
 
 
 

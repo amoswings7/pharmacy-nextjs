@@ -143,6 +143,17 @@
       color: #fff;
       border: none;
   }
+
+
+  @media screen and (max-width:760px) {
+    #mainContent {
+      grid-template-columns:1fr;
+    }
+    
+    #mainContent #asideContent {
+      display: none;
+    }
+  }
 /*   
   #mainContent > main #productSection .product > div.image-area {
     width: 100%;

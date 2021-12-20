@@ -7,8 +7,9 @@ import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
 import { useState } from "react"
+import SubmitBtn from "../../components/form/submitBtn"
 
-function acidReflux() {
+function AcidReflux() {
 
     const symptomList1 = [
         'Heartburn - a burning feeling in the chest just behind the breastbone that occurs after eating and lasts a few minutes to several hours',
@@ -86,7 +87,7 @@ function acidReflux() {
 
     return (
         <div id={styles.formContainer}>
-            <form>
+            <form onSubmit={(e)=>e.preventDefault()}>
                 <Header text={'YOUR SYMPTOMS'}/>
                 <Question text={'Are you experiencing acid reflux at least twice a week?'}/>
                 <Decider setState={setSymptom1} name={randomName()}/>
@@ -164,13 +165,11 @@ function acidReflux() {
                 <List listItems={agreementList1}/>                
                 {agreement3===false && (
                     <AlertText text={'We are unable to supply you with acid reflux medication for treating other conditions. Please consult your GP for the treatment of any other condition.'}/>
-                )}
-                
-
-                
+                )} 
+                <SubmitBtn/>                                
             </form>            
         </div>
     )
 }
 
-export default acidReflux
+export default AcidReflux

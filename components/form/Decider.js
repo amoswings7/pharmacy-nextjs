@@ -1,7 +1,15 @@
 // import React from 'react'
+import { useEffect, useState } from 'react';
 import styles from '../../styles/form.module.css'
 
-function Decider({setState,name}) {
+function Decider({setState}) {
+
+
+    const [name,setName] = useState(null);
+    useEffect(()=>{
+        setName(()=>Math.floor(Math.random()*12345679*77).toString())
+    },[])
+
 
     return (
         <div id={styles.decider} >

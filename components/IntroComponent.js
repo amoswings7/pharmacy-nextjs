@@ -1,13 +1,9 @@
-import { useEffect } from 'react';
 import styles from '../styles/introSection.module.css'
 
 
 
 
-function IntroComponent({data}) {
-    useEffect(()=>{
-        console.log('data')
-    },[])
+function IntroComponent() {
     return (
         <div id={styles.introSection}>
                 <h1>WE OFFER GENUINE TREATMENTS</h1>

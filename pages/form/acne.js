@@ -7,6 +7,7 @@ import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
 import { useState } from "react"
+import SubmitBtn from "../../components/form/submitBtn"
 
 
 function Acne() {
@@ -61,6 +62,7 @@ function Acne() {
                 <Decider name={randomName()}/>
                 <AlertText text={'You must wait for your sunburn to completely resolve before starting your treatment.'}/>
 
+                <SubmitBtn/>
             </form>
         </div>
     )

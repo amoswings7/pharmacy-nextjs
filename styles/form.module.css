@@ -68,3 +68,22 @@
 #ruleLine{
     margin: 15px 0;
 }
+
+
+
+#radioList>label{
+    display: block;
+    margin-bottom: 7px;
+}
+#radioList>label>span{
+    margin-left: 10px;
+}
+
+#submitBtn> button{
+    width: 200px;
+    padding: 5px;
+    font-size: 18px;
+    border: none;
+    background: #264653;
+    color: #fff;
+}

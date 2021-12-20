@@ -18,7 +18,7 @@ function Migraine() {
     return (
         <div id={styles.formContainer}>
             <form>
-                <Header text={'ABOUT ME'}/>
+                <Header text={'YOUR HEALTH'}/>
                 <Question text={'Have you previously been diagnosed with mild to moderate acne by a medical doctor?'}/>
                 <Decider name={randomName()}/>
             </form>

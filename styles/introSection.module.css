@@ -33,7 +33,7 @@ max-width: 600px;
 } */
 
 
-#category-container> .header .h1 {
+.header .h1 {
     height: 50px;
     display: flex;
     justify-content: center;
@@ -41,14 +41,14 @@ max-width: 600px;
     color: #2A9D8F;
   }
   
-  #category-container > .header > div {
+.header > div {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
   }
   
-  #category-container > .header > div > i {
+.header > div > i {
     color: green;
     font-size: 70px;
     animation-name: arrowAnimation;
@@ -57,6 +57,20 @@ max-width: 600px;
     animation-delay: 2s;
   }
 
+  @keyframes arrowAnimation {
+    0% {
+      transform: translateY(0px);
+      opacity: 0.1;
+    }
+    30% {
+      transform: translateY(20px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 0.1;
+    }
+  }
 #categoryContainer #categoryHolder {
     padding: 20px 50px 20px 10px;
     display: grid;

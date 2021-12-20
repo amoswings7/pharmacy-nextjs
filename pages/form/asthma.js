@@ -7,9 +7,10 @@ import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
 import { useState } from "react"
+import SubmitBtn from "../../components/form/submitBtn"
 
 
-function asthma() {
+function Asthma() {
     
     //states
     const [symptom1,setSymptom1]= useState(null);
@@ -61,7 +62,7 @@ function asthma() {
             <form>
                 <Header text={'YOUR SYMPTOMS'}/>
                 <Question text={'Have you called an ambulance or had emergency treatment for breathing problems in the last year?'}/>
-                <Decider setState={setSymptom1} name={randomName()}/>
+                <Decider setState={setSymptom1} inputName={randomName()}/>
                 {symptom1 && (
                     <Comment placeHolder={`What emergency did you have?
     What was the outcome?`} label={'Please provide more details *'}/>
@@ -69,7 +70,7 @@ function asthma() {
                 )}
 
                 <Question text={'Do you use your inhaler more than four times a day?'}/>
-                <Decider setState={setSymptom2} name={randomName()}/>
+                <Decider setState={setSymptom2} inputName={randomName()}/>
                 {symptom2 && (
                     <Comment placeHolder={`How many times do you use your inhaler per day? 
                     How often do you use it for more than 4 times a day?
@@ -82,37 +83,37 @@ function asthma() {
                 {/* health section */}
                 <Header text={'YOUR HEALTH'}/>
                 <Question text={'Has your Asthma been reviewed by a doctor or nurse within the last 12 months?'}/>
-                <Decider setState={setHealth1} name={randomName()}/>
+                <Decider setState={setHealth1} inputName={randomName()}/>
                 {health1 && (
                     <Comment label={'Please provide more details *'}/>
                 )}
 
                 <Question text={'Have you been prescribed Ventolin (salbutamol) in the last 12 months?'}/>
-                <Decider setState={setHealth2} name={randomName()}/>
+                <Decider setState={setHealth2} inputName={randomName()}/>
                 {health2 && (
                     <Comment label={'Please provide more details *'}/>
                 )}
                
                 <Question text={'Is your asthma well controlled? If you are not sure, take the asthma control test here.'}/>
-                <Decider setState={setHealth3} name={randomName()}/>
+                <Decider setState={setHealth3} inputName={randomName()}/>
                 {health3 && (
                     <Comment label={'Please provide more details *'}/>
                 )}
            
                 <Question text={'Do you have an allergy (hypersensitivity) to Ventolin (salbutamol) or have you had a reaction with an asthma inhaler previously?ALLERGY A'}/>
-                <Decider setState={setHealth4} name={randomName()}/>
+                <Decider setState={setHealth4} inputName={randomName()}/>
                 {health4===false && (
                     <Comment label={'Please provide more details *'}/>
                 )}
            
                 <Question text={'Are you breastfeeding or pregnant or planning to become pregnant in the next 6 months?'}/>
-                <Decider setState={setHealth5} name={randomName()}/>
+                <Decider setState={setHealth5} inputName={randomName()}/>
                 {health5===false && (
                 <Comment label={'Please provide more details *'}/>
                 )}
 
                 <Question text={'Have you been diagnosed with any of the following?'}/>
-                <Decider setState={setHealth6} name={randomName()}/>
+                <Decider setState={setHealth6} inputName={randomName()}/>
                 <List listItems={healthList1}/>
                 {health6 && (
                     <Comment label={'Please provide more details *'}/>
@@ -122,11 +123,11 @@ function asthma() {
                 {/* Medication section */}
                 <Header text={'YOUR MEDICATION'}/>
                 <Question text={'Are you currently taking any medication (including over the counter, prescription or recreational drugs)?'}/>
-                <Decider setState={setMedication1} name={randomName()}/>
+                <Decider setState={setMedication1} inputName={randomName()}/>
                 {medication1 && (
                     <>
                     <Question text={'Are you taking any of the following medications?'}/>
-                    <Decider setState={setMedication2} name={randomName()}/>
+                    <Decider setState={setMedication2} inputName={randomName()}/>
                     <List listItems={medicationList1}/>
                     {medication2 && (
                         <Comment label={'Please provide more details *'}/>
@@ -139,21 +140,21 @@ function asthma() {
                 {/* agreement section */}
                 <Header text={'AGREEMENT'}/>
                 <Question text={'Do you understand that you must seek medical attention if your asthma does not improve within 1 hour of using your inhaler?'}/>
-                <Decider setState={setAgreement1} name={randomName()}/>
+                <Decider setState={setAgreement1} inputName={randomName()}/>
                 {agreement1===false && (
                     <AlertText text={'Please contact our customer service for more information. We cannot continue if you do not understand this.'}/>
                 )}
 
                 <Question text={'Are you taking any of the following medications?'}/>
-                <Decider setState={setAgreement2} name={randomName()}/>
+                <Decider setState={setAgreement2} inputName={randomName()}/>
                 <List listItems={agreementList1}/>
                 {agreement2===false && (
                     <AlertText text={'You must agree to this before continuing. If you need assistance, please contact our customer service.'}/>
                 )}
-
+                <SubmitBtn/>
             </form>        
         </div>
     )
 }
 
-export default asthma
+export default Asthma
