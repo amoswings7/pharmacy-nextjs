@@ -7,10 +7,10 @@ import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
 import { useState } from "react"
+import SubmitBtn from "../../components/form/SubmitBtn"
 
 
 import React from 'react'
-import SubmitBtn from "../../components/form/submitBtn"
 
 function WeightLoss() {
 

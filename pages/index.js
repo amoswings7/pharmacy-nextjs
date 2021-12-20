@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar'
-import IntroComponent from '../components/introComponent'
+import IntroComponent from '../components/IntroComponent'
 import CategorySection from '../components/CategorySection'
 import { useEffect } from 'react';
 
