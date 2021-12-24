@@ -78,6 +78,10 @@
 #radioList>label>span{
     margin-left: 10px;
 }
+#submitBtn:disabled{
+    background: grey;
+    color: red;
+}
 
 #submitBtn> button{
     width: 200px;

@@ -14,18 +14,18 @@ function Context({children}) {
         const cartData = localStorage.getItem(cartStorageName);
         if(cartData){
             const newData = JSON.parse(cartData)
-            if(Object.keys(newData).length > 0){
+            if(newData.length > 0){
                 setCarts(newData)
             }
-            console.log(newData)
+            // console.log(newData)
         }
         const consultationData = localStorage.getItem(consultationStorageName);
         if(consultationData){
             const newData = JSON.parse(consultationData)
             if(Object.keys(newData).length > 0){
-                setCarts(newData)
+                setConsultation(newData)
             }
-            console.log(newData)
+            // console.log(newData)
         }
     },[])
     //its job is only to update localstorage when items are added

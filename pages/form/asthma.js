@@ -6,12 +6,16 @@ import styles from '../../styles/form.module.css'
 import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
-import { useState } from "react"
+import { useState,useContext } from "react"
+import {ContextApi} from "../../components/context"
 import SubmitBtn from "../../components/form/SubmitBtn"
-
+import Agreement from "../../components/form/Agreement"
 
 function Asthma() {
-    
+
+    const formName = 'asthma'
+    const {consultation,setConsultation} = useContext(ContextApi)
+
     //states
     const [symptom1,setSymptom1]= useState(null);
     const [symptom2,setSymptom2]= useState(null);
@@ -29,7 +33,9 @@ function Asthma() {
 
     const [agreement1,setAgreement1] = useState(null)
     const [agreement2,setAgreement2] = useState(null)    
-    
+
+    const isAgreedList = [agreement1,agreement2]
+
     
     
     const healthList1 = [
@@ -145,13 +151,10 @@ function Asthma() {
                     <AlertText text={'Please contact our customer service for more information. We cannot continue if you do not understand this.'}/>
                 )}
 
-                <Question text={'Are you taking any of the following medications?'}/>
-                <Decider setState={setAgreement2} inputName={randomName()}/>
-                <List listItems={agreementList1}/>
-                {agreement2===false && (
-                    <AlertText text={'You must agree to this before continuing. If you need assistance, please contact our customer service.'}/>
+                <Agreement agreement={agreement2} setAgreement={setAgreement2}/>
+                {isAgreedList.every((item)=>item===true) && (
+                    <SubmitBtn consultationState={consultation} setConsultationState={setConsultation} formName={formName}/>                                
                 )}
-                <SubmitBtn/>
             </form>        
         </div>
     )

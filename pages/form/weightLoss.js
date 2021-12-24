@@ -6,13 +6,16 @@ import styles from '../../styles/form.module.css'
 import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
-import { useState } from "react"
+import { useState, useContext} from "react"
+import {ContextApi} from "../../components/context"
 import SubmitBtn from "../../components/form/SubmitBtn"
+import Agreement from "../../components/form/Agreement"
 
-
-import React from 'react'
 
 function WeightLoss() {
+
+    const formName = 'weightLoss'
+    const {consultation,setConsultation} = useContext(ContextApi)
 
     //states
     const [health1,setHealth1]=useState(null)
@@ -32,7 +35,10 @@ function WeightLoss() {
     const [agreement4,setAgreement4]=useState(null)
     const [agreement5,setAgreement5]=useState(null)
     
-    
+
+
+    const isAgreedList = [agreement1,agreement2,agreement3,agreement4,agreement5]
+
     const medicationList1 = [
         'Other Anti-Obesity Drugs',
         'HIV Medication',
@@ -101,7 +107,7 @@ function WeightLoss() {
             
                 <Question text={'Are you taking any medicine for high cholesterol, diabetes or high blood pressure?'}/>
                 <Decider setState={setMedication2}/>
-                {health2 && (
+                {medication2 && (
                     <Comment label={'Please provide more details about your condition *'}/>
                 )}
             
@@ -148,7 +154,10 @@ function WeightLoss() {
 
                 )}
 
-                <SubmitBtn/>
+                <Agreement agreement={agreement5} setAgreement={setAgreement5}/>
+                {isAgreedList.every((item)=>item===true) && (
+                    <SubmitBtn consultationState={consultation} setConsultationState={setConsultation} formName={formName}/>                                
+                )}
             </form>
         </div>
     )

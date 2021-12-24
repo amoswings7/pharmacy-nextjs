@@ -2,11 +2,20 @@ import { useRouter } from "next/router"
 import styles from '../../styles/form.module.css'
 
 
-function SubmitBtn() {
+function SubmitBtn({consultationState,setConsultationState, formName}) {
     const route = useRouter();
+
+
     function submitHandler(e){
         e.preventDefault()
-        console.log(route)
+        if(consultationState){
+            consultationState[formName]=true
+            setConsultationState(consultationState)
+        }else{
+            const newObj = {}
+            newObj[formName]=true
+            setConsultationState(()=>newObj)
+        }
         route.back()
     }
     return (

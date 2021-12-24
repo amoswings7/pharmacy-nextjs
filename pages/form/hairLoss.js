@@ -6,8 +6,10 @@ import styles from '../../styles/form.module.css'
 import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
-import { useState } from "react"
+import { useState,useContext} from "react"
+import {ContextApi} from "../../components/context"
 import SubmitBtn from "../../components/form/SubmitBtn"
+import Agreement from "../../components/form/Agreement"
 
 function HairLoss() {
     const medicationList = [
@@ -18,6 +20,9 @@ function HairLoss() {
         'You experience any pain, impotence, problems with ejaculation or loss of libido'
     ]
 
+
+    const formName = 'hairLoss'
+    const {consultation,setConsultation} = useContext(ContextApi)
 
     // states
     const [aboutYou1,setAboutYou1] = useState(null);
@@ -41,6 +46,8 @@ function HairLoss() {
     const [agreement4,setAgreement4] = useState(null);
     const [agreement5,setAgreement5] = useState(null);
     const [agreement6,setAgreement6] = useState(null);
+
+    const isAgreedList = [agreement1,agreement2,agreement3,agreement4,agreement5,agreement6]
 
     return (
         <div id={styles.formContainer}>
@@ -164,7 +171,11 @@ function HairLoss() {
                 {agreement5===false && (
                     <AlertText text={'Please confirm that you understand.'}/>
                 )}
-                <SubmitBtn/>
+
+                <Agreement agreement={agreement6} setAgreement={setAgreement6}/>
+                {isAgreedList.every((item)=>item===true) && (
+                    <SubmitBtn consultationState={consultation} setConsultationState={setConsultation} formName={formName}/>                                
+                )}
             </form>
         </div>
     )

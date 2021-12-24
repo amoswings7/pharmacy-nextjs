@@ -7,7 +7,7 @@ function Comment({placeHolder,label}) {
         <div id={styles.commentContainer}>
             <label htmlFor="comment">
                 <p>{label || 'comment'}</p>
-                <textarea placeholder={placeHolder} id={styles.textarea}></textarea>
+                <textarea required placeholder={placeHolder} id={styles.textarea}></textarea>
             </label>
         </div>
     )

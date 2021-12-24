@@ -6,8 +6,11 @@ import styles from '../../styles/form.module.css'
 import Comment from '../../components/form/Comment'
 import Line from "../../components/form/Line"
 import AlertText from "../../components/form/AlertText"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import {ContextApi} from "../../components/context"
 import SubmitBtn from "../../components/form/SubmitBtn"
+import Agreement from "../../components/form/Agreement"
+
 
 function AcidReflux() {
 
@@ -57,14 +60,8 @@ function AcidReflux() {
         'Clozapine (for schizophrenia)'
     ];
 
-    const agreementList1 = [
-        'You will read the patient information leaflet supplied with your medication',
-        'You will contact us and inform your GP of your medication if you experience any side effects of treatment, if you start a new medication or if your medical conditions change during treatment.',
-        'The treatment is solely for your own use',
-        'You give permission to access you NHS Summary Care Record in order to identify you correctly, check your medical history and provide the best possible care.',
-        'You give permission to contact your GP to inform them of your treatment.',
-        'You have answered all the above questions accurately and truthfully. You understand our prescribers take your answers in good faith and base their prescribing decisions accordingly, and that incorrect information can be hazardous to your health.'
-    ]
+    const formName = 'acidReflux'
+    const {consultation,setConsultation} = useContext(ContextApi)
 
     const [symptom1,setSymptom1]= useState(null);
     const [symptom2,setSymptom2]= useState(null);
@@ -80,6 +77,7 @@ function AcidReflux() {
     const [agreement2,setAgreement2] = useState(null)
     const [agreement3,setAgreement3] = useState(null)
 
+    const isAgreedList = [agreement1,agreement2,agreement3]
     function randomName(){
         return Math.floor(Math.random()*12345679*77).toString()
     }
@@ -160,13 +158,11 @@ function AcidReflux() {
                     <AlertText text={'We are unable to supply you with acid reflux medication for treating other conditions. Please consult your GP for the treatment of any other condition.'}/>
                 )}     
 
-                <Question text={'Do you agree with the following?'}/>
-                <Decider setState={setAgreement3} name={randomName()}/>
-                <List listItems={agreementList1}/>                
-                {agreement3===false && (
-                    <AlertText text={'We are unable to supply you with acid reflux medication for treating other conditions. Please consult your GP for the treatment of any other condition.'}/>
-                )} 
-                <SubmitBtn/>                                
+                <Agreement agreement={agreement3} setAgreement={setAgreement3}/>
+                
+                {isAgreedList.every((item)=>item===true) && (
+                    <SubmitBtn consultationState={consultation} setConsultationState={setConsultation} formName={formName}/>                                
+                )}
             </form>            
         </div>
     )

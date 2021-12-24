@@ -18,10 +18,12 @@
   
   #mainContent > main > #consultSection {
     min-height: 250px;
+    height: 250px;
     border-radius: 0px 15px 0 0;
     margin-bottom: 20px;
     padding: 20px;
     border: 2px solid #264653;
+    /* background: rgba(0, 0, 0, 0.5); */
   }
   
   #mainContent > main > #consultSection > #header {
@@ -142,6 +144,24 @@
       background: #F4A261;
       color: #fff;
       border: none;
+  }
+
+  #formCompletedText{
+    background: rgba(0, 0, 0, 0.15);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+  }
+  #formCompletedText> h2{
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+    /* background: rgba(0, 0, 0, 0.5); */
+  }
+  #formCompletedText> h2> span {
+    color: #2A9D8F;
   }
 
 
